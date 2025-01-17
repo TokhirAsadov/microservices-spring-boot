@@ -1,6 +1,6 @@
 package com.javatuz.OrderService.external.response;
 
-import com.dailycodebuffer.OrderService.model.PaymentMode;
+import com.javatuz.OrderService.model.PaymentMode;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

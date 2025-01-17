@@ -9,7 +9,7 @@ import com.javatuz.OrderService.external.response.PaymentResponse;
 import com.javatuz.OrderService.model.OrderRequest;
 import com.javatuz.OrderService.model.OrderResponse;
 import com.javatuz.OrderService.repository.OrderRepository;
-import com.javatuz.ProductService.model.ProductResponse;
+import com.javatuz.OrderService.model.ProductResponse;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
