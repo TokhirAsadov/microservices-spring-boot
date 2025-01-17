@@ -12,9 +12,9 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+  config:
+    import: configserver:http://localhost:9296
 
-#  config:
-#    import: configserver:http://localhost:9296
 #  security:
 #    oauth2:
 #      resourceserver:
