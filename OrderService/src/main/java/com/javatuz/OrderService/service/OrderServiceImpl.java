@@ -26,9 +26,9 @@ public class OrderServiceImpl implements OrderService{
 
     @Autowired
     private ProductService productService;
-//
-//    @Autowired
-//    private PaymentService paymentService;
+
+    @Autowired
+    private PaymentService paymentService;
 //
 //    @Autowired
 //    private RestTemplate restTemplate;
@@ -56,27 +56,27 @@ public class OrderServiceImpl implements OrderService{
 
         order = orderRepository.save(order);
 
-//        log.info("Calling Payment Service to complete the payment");
-//        PaymentRequest paymentRequest
-//                = PaymentRequest.builder()
-//                .orderId(order.getId())
-//                .paymentMode(orderRequest.getPaymentMode())
-//                .amount(orderRequest.getTotalAmount())
-//                .build();
-//
-//        String orderStatus = null;
-//        try {
-//            paymentService.doPayment(paymentRequest);
-//            log.info("Payment done Successfully. Changing the Oder status to PLACED");
-//            orderStatus = "PLACED";
-//        } catch (Exception e) {
-//            log.error("Error occurred in payment. Changing order status to PAYMENT_FAILED");
-//            orderStatus = "PAYMENT_FAILED";
-//        }
-//
-//        order.setOrderStatus(orderStatus);
-//        orderRepository.save(order);
-//
+        log.info("Calling Payment Service to complete the payment");
+        PaymentRequest paymentRequest
+                = PaymentRequest.builder()
+                .orderId(order.getId())
+                .paymentMode(orderRequest.getPaymentMode())
+                .amount(orderRequest.getTotalAmount())
+                .build();
+
+        String orderStatus = null;
+        try {
+            paymentService.doPayment(paymentRequest);
+            log.info("Payment done Successfully. Changing the Oder status to PLACED");
+            orderStatus = "PLACED";
+        } catch (Exception e) {
+            log.error("Error occurred in payment. Changing order status to PAYMENT_FAILED");
+            orderStatus = "PAYMENT_FAILED";
+        }
+
+        order.setOrderStatus(orderStatus);
+        orderRepository.save(order);
+
         log.info("Order Places successfully with Order Id: {}", order.getId());
         return order.getId();
     }
