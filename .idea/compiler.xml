@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="service-registry" />
         <module name="ConfigServer" />
+        <module name="CloudGateway" />
       </profile>
       <profile name="Annotation profile for PaymentService" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -25,6 +26,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="CloudGateway" options="-parameters" />
       <module name="ConfigServer" options="-parameters" />
       <module name="OrderService" options="-parameters" />
       <module name="PaymentService" options="-parameters" />
