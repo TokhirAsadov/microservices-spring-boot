@@ -15,22 +15,22 @@ spring:
   config:
     import: configserver:http://localhost:9296
 
-#  security:
-#    oauth2:
-#      resourceserver:
-#        jwt:
-#          issuer-uri: https://dev-15585796.okta.com/oauth2/default
-#      client:
-#        registration:
-#          internal-client:
-#            provider: okta
-#            authorization-grant-type: client_credentials
-#            scope: internal
-#            client-id: 0oa6cgklvwIS2SoFZ5d7
-#            client-secret: L_VPQB5XQX5QAhnxaDqA0IhWG-TImnVpaHW7ER33
-#        provider:
-#          okta:
-#            issuer-uri: https://dev-15585796.okta.com/oauth2/default
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://dev-xxxxxxx.okta.com/oauth2/default
+      client:
+        registration:
+          internal-client:
+            provider: okta
+            authorization-grant-type: client_credentials
+            scope: internal
+            client-id: xxxxxxx
+            client-secret: xxxxxxx
+        provider:
+          okta:
+            issuer-uri: https://dev-xxxxxx.okta.com/oauth2/default
 
 resilience4j:
   circuitbreaker:
