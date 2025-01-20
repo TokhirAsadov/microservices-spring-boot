@@ -10,8 +10,15 @@ services:
     volumes:
       - ./mysql-data:/var/lib/mysql
       - ./docker/mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
+
   redis:
     container_name: 'redis-cashing'
     image: 'redis:latest'
     ports:
       - '6379:6379'
+
+  zipkin-server:
+    image: openzipkin/zipkin:latest
+    mem_reservation: 300m
+    ports:
+      - "9411:9411"
