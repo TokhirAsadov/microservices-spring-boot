@@ -9,9 +9,8 @@
         <outputRelativeToContentRoot value="true" />
         <module name="service-registry" />
         <module name="ConfigServer" />
-        <module name="CloudGateway" />
       </profile>
-      <profile name="Annotation profile for PaymentService" enabled="true">
+      <profile name="Annotation profile for OrderService" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
@@ -19,8 +18,9 @@
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.36/lombok-1.18.36.jar" />
         </processorPath>
         <module name="OrderService" />
-        <module name="PaymentService" />
         <module name="ProductService" />
+        <module name="PaymentService" />
+        <module name="CloudGateway" />
       </profile>
     </annotationProcessing>
   </component>
