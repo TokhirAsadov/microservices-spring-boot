@@ -1,5 +1,6 @@
 package com.javatuz.OrderService.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -147,6 +148,18 @@ public class OrderControllerTest {
         assertEquals(orderRequest.getQuantity(), o.getQuantity());
 
 
+    }
+
+    @Test
+    public void test_WhenPlaceOrderWithWrongAccess_thenThrow403() throws Exception {
+        OrderRequest orderRequest = getMockOrderRequest();
+        MvcResult mvcResult
+                = mockMvc.perform(MockMvcRequestBuilders.post("/order/placeOrder")
+                        .with(jwt().authorities(new SimpleGrantedAuthority("Admin")))
+                        .contentType(MediaType.APPLICATION_JSON_VALUE)
+                        .content(objectMapper.writeValueAsString(orderRequest))
+                ).andExpect(MockMvcResultMatchers.status().isForbidden())
+                .andReturn();
     }
 
     private OrderRequest getMockOrderRequest() {
