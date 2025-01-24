@@ -135,7 +135,40 @@
 					</annotationProcessorPaths>
 				</configuration>
 			</plugin>
+
+			<plugin>
+				<groupId>com.google.cloud.tools</groupId>
+				<artifactId>jib-maven-plugin</artifactId>
+				<version>3.4.4</version> <!-- Ensure compatibility with your Maven version -->
+				<configuration>
+					<from>
+						<image>openjdk:17</image>
+					</from>
+					<to>
+						<image>guvalakat/cloudgateway_v2</image>
+						<tags>
+							<tag>0.0.4</tag>
+						</tags>
+					</to>
+					<container>
+						<entrypoint>java,-jar,/app/${project.build.finalName}.jar</entrypoint>
+					</container>
+					<extraDirectories>
+						<paths>
+							<path>
+								<from>target/</from>
+								<includes>*.jar</includes>
+								<into>/app</into>
+							</path>
+						</paths>
+					</extraDirectories>
+
+				</configuration>
+
+			</plugin>
+
 		</plugins>
+		<finalName>cloudgateway</finalName>
 	</build>
 
 </project>
