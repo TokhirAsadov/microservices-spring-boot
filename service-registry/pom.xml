@@ -64,6 +64,32 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+
+			<plugin>
+				<groupId>com.google.cloud.tools</groupId>
+				<artifactId>jib-maven-plugin</artifactId>
+				<version>3.4.4</version>
+				<configuration>
+					<from>
+						<image>openjdk:17</image>
+					</from>
+					<healthCheck>
+						<cmd>["CMD-SHELL", "curl -f http://host.docker.internal:8761/actuator/health || exit 1"]</cmd>
+						<interval>10s</interval>
+						<timeout>3s</timeout>
+<!--						<startPeriod>120s</startPeriod>-->
+						<retries>5</retries>
+					</healthCheck>
+					<to>
+						<image>registry.hub.docker.com/guvalakat/${artifactId}_v2</image>
+						<tags>${project.version}</tags>
+					</to>
+					<exposedPorts>
+						<exposedPort>8761</exposedPort>
+					</exposedPorts>
+				</configuration>
+			</plugin>
+
 		</plugins>
 	</build>
 
