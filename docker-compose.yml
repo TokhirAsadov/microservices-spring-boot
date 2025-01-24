@@ -24,13 +24,13 @@ services:
       - "9411:9411"
 
   service-registry:
-    image: guvalakat/service-registry:0.0.2
+    image: guvalakat/service-registry_v2:latest
     container_name: service-registry
     ports:
       - "8761:8761"
 
   config-server:
-    image: guvalakat/config-server:0.0.5
+    image: guvalakat/config-server_v2:latest
     container_name: config-server
     ports:
       - "9296:9296"
@@ -41,7 +41,7 @@ services:
       - service-registry
 
   cloud-gateway:
-    image: guvalakat/cloudgateway:latest
+    image: guvalakat/cloudgateway_v2:0.0.4
     container_name: cloud-gateway
     ports:
       - "9090:9090"
@@ -57,4 +57,4 @@ services:
         until curl -s http://config-server:9296/actuator/health; do
           echo "Waiting for config-server..."; sleep 5;
         done;
-        exec java -jar /cloudgateway.jar'
+        exec java -jar /app/cloudgateway.jar'
