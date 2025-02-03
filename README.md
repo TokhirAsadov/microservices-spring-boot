@@ -76,6 +76,10 @@ spec:
                 imagePullPolicy: Always
                 ports:
                   - containerPort: 8761
+
+***
+
+kubectl delete -f deploy.yaml
 ```    
 
 ```
@@ -95,4 +99,8 @@ spec:
           port: 80
           targetPort: 8761 # This is the port that the service is listening on inside the pod
     type: NodePort
+    
+***
+
+kubectl delete -f svc.yaml
 ```
