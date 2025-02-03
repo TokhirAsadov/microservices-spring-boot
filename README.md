@@ -17,8 +17,7 @@
 ### ```kubectl delete all --all```
 ### ```kubectl get all```
 
-### ```kubectl create -h```
-
+### ```kubectl create -h```                    Create a resource from a file or from stdin
 ### ```kubectl create clusterrole ```          Create a cluster role
 ### ```kubectl create clusterrolebinding ```   Create a cluster role binding for a particular cluster role
 ### ```kubectl create configmap  ```           Create a config map from a local file, directory or literal value
