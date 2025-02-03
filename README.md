@@ -36,3 +36,12 @@
 ### ```kubectl create service  ```             Create a service using a specified subcommand
 ### ```kubectl create serviceaccount  ```      Create a service account with the specified name
 ### ```kubectl create token    ```             Request a service account token
+
+### ```kubectl create deployment nginx --image=nginx ```
+
+### ```kubectl get all```
+### ```kubectl get all -o wide```
+### ```kbuectl get pod pod_name```
+### ```kbuectl logs pod_name```
+### ```kbuectl exec -it pod_name -- /bin/bash```
+### ```kbuectl edit deployment```
