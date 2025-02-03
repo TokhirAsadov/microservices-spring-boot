@@ -1,4 +1,5 @@
 # microservices-spring-boot
+***
 
 ### ```wsl --install```
 ### ```minikube start --driver=docker```
@@ -7,6 +8,7 @@
 ### ```minikube delete```
 
 # kubectl commands below:
+***
 
 ### ```kubectl get all```
 ### ```kubectl get pods```
@@ -18,6 +20,7 @@
 ### ```kubectl get all```
 
 # creating commands below:
+***
 ### ```kubectl create -h```                    Create a resource from a file or from stdin
 ### ```kubectl create clusterrole ```          Create a cluster role
 ### ```kubectl create clusterrolebinding ```   Create a cluster role binding for a particular cluster role
@@ -45,3 +48,51 @@
 ### ```kbuectl logs pod_name```
 ### ```kbuectl exec -it pod_name -- /bin/bash```
 ### ```kbuectl edit deployment```
+
+
+# apply .yaml commands below:
+***
+``` 
+kubectl apply -f deploy.yaml
+
+***
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: service-registry
+spec:
+    selector:
+        matchLabels:
+            app: service-registry
+    template:
+        metadata:
+            labels:
+                app: service-registry
+        spec:
+            containers:
+              - name: service-registry
+                image: guvalakat/service-registry:latest
+                imagePullPolicy: Always
+                ports:
+                  - containerPort: 8761
+```    
+
+```
+kubectl apply -f svc.yaml
+
+***
+
+apiVersion: v1
+kind: Service
+metadata:
+    name: service-registry-svc
+spec:
+    selector:
+        app: service-registry
+    ports:
+        - protocol: TCP
+          port: 80
+          targetPort: 8761 # This is the port that the service is listening on inside the pod
+    type: NodePort
+```
