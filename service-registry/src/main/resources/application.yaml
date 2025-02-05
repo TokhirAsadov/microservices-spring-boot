@@ -3,7 +3,8 @@ server:
 
 eureka:
   instance:
-    hostname: localhost
+#    hostname: localhost # hard coding the hostname
+    hostname: "${EUREKA_INSTANCE_HOST:localhost}.eureka" # In k8s, this is the hostname that the eureka server will use to register itself with the eureka server
   client:
     register-with-eureka: false
     fetch-registry: false
