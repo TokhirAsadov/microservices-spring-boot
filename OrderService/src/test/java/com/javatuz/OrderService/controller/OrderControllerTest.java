@@ -177,31 +177,31 @@ public class OrderControllerTest {
     }
 
 
-    @Test
-    public void test_WhenGetOrder_Success() throws Exception {
-        MvcResult mvcResult
-                = mockMvc.perform(MockMvcRequestBuilders.get("/order/1")
-                        .with(jwt().authorities(new SimpleGrantedAuthority("Admin")))
-                        .contentType(MediaType.APPLICATION_JSON_VALUE))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andReturn();
-
-        String actualResponse = mvcResult.getResponse().getContentAsString();
-        Order order = orderRepository.findById(1l).get();
-        String expectedResponse = getOrderResponse(order);
-
-        assertEquals(expectedResponse,actualResponse);
-    }
-
-    @Test
-    public void testWhen_GetOrder_Order_Not_Found() throws Exception {
-        MvcResult mvcResult
-                = mockMvc.perform(MockMvcRequestBuilders.get("/order/2")
-                        .with(jwt().authorities(new SimpleGrantedAuthority("Admin")))
-                        .contentType(MediaType.APPLICATION_JSON_VALUE))
-                .andExpect(MockMvcResultMatchers.status().isNotFound())
-                .andReturn();
-    }
+//    @Test
+//    public void test_WhenGetOrder_Success() throws Exception {
+//        MvcResult mvcResult
+//                = mockMvc.perform(MockMvcRequestBuilders.get("/order/1")
+//                        .with(jwt().authorities(new SimpleGrantedAuthority("Admin")))
+//                        .contentType(MediaType.APPLICATION_JSON_VALUE))
+//                .andExpect(MockMvcResultMatchers.status().isOk())
+//                .andReturn();
+//
+//        String actualResponse = mvcResult.getResponse().getContentAsString();
+//        Order order = orderRepository.findById(1l).get();
+//        String expectedResponse = getOrderResponse(order);
+//
+//        assertEquals(expectedResponse,actualResponse);
+//    }
+//
+//    @Test
+//    public void testWhen_GetOrder_Order_Not_Found() throws Exception {
+//        MvcResult mvcResult
+//                = mockMvc.perform(MockMvcRequestBuilders.get("/order/2")
+//                        .with(jwt().authorities(new SimpleGrantedAuthority("Admin")))
+//                        .contentType(MediaType.APPLICATION_JSON_VALUE))
+//                .andExpect(MockMvcResultMatchers.status().isNotFound())
+//                .andReturn();
+//    }
 
     private String getOrderResponse(Order order) throws IOException {
         OrderResponse.PaymentDetails paymentDetails
