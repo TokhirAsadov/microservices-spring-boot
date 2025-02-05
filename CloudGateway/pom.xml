@@ -147,7 +147,7 @@
 					<to>
 						<image>guvalakat/cloudgateway_v2</image>
 						<tags>
-							<tag>0.0.4</tag>
+							<tag>0.0.5-k8s</tag>
 						</tags>
 					</to>
 					<container>
