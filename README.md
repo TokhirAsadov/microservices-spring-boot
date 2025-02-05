@@ -104,3 +104,17 @@ spec:
 
 kubectl delete -f svc.yaml
 ```
+
+# namespace
+***
+```
+kubectl create namespace my-namespace
+```
+
+``` 
+kubectl apply -f deploy.yaml -n my-namespace 
+```
+
+```
+kubectl get all -n my-namespace
+```
