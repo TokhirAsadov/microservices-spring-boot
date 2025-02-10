@@ -193,3 +193,49 @@ spec:
     - port: 80
       targetPort: 8761
 ```
+
+# config-server-deployment.yaml
+***
+```kubernetes
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: config-server-app
+spec:
+  selector:
+    matchLabels:
+      app: config-server-app
+  template:
+    metadata:
+      labels:
+        app: config-server-app
+    spec:
+      containers:
+        - name: config-server-app
+          image: guvalakat/config-server_v2:latest
+#          resources:
+#            limits:
+#              memory: "128Mi"
+#              cpu: "500m"
+          ports:
+            - containerPort: 9296
+          env:
+            - name: EUREKA_SERVER_ADDRESS
+              valueFrom:
+                configMapKeyRef:
+                  key: eureka_service_address
+                  name: eureka-cm
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: config-server-svc
+spec:
+  selector:
+    app: config-server-app
+  ports:
+    - port: 80
+      targetPort: 9296
+```
