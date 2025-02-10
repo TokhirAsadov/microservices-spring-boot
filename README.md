@@ -118,3 +118,25 @@ kubectl apply -f deploy.yaml -n my-namespace
 ```
 kubectl get all -n my-namespace
 ```
+
+# minikube dashboard
+***
+```
+minikube dashboard
+```
+
+```
+kubectl apply -f .\k8s\  # deploying all .yaml files
+```
+
+```kubernetes
+minikube service [service-name]
+```
+
+```kubernetes
+kubectl get pv
+```
+
+```kubernetes
+kubectl get pvc
+```
