@@ -472,3 +472,44 @@ spec:
     - port: 80
       targetPort: 8081
 ```
+
+# redis-deployment.yaml
+***
+```kubernetes
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-app
+spec:
+  selector:
+    matchLabels:
+      app: redis-app
+  template:
+    metadata:
+      labels:
+        app: redis-app
+    spec:
+      containers:
+        - name: redis-app
+          image: redis:7.4.2
+          ports:
+            - containerPort: 6379
+          command:
+            - "redis-server"
+          args:
+            - "--protected-mode"
+            - "no"
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis
+spec:
+  selector:
+    app: redis-app
+  ports:
+    - port: 6379
+      targetPort: 6379
+```
