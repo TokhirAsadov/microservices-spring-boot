@@ -129,6 +129,10 @@ minikube dashboard
 kubectl apply -f .\k8s\  # deploying all .yaml files
 ```
 
+```
+kubectl delete -f .\k8s\  # deleting all .yaml files
+```
+
 ```kubernetes
 minikube service [service-name]
 ```
