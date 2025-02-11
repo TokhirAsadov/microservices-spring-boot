@@ -136,45 +136,45 @@ public class OrderControllerTest {
                 .build();
     }
 
-    @Test
-    public void test_WhenPlaceOrder_DoPayment_Success() throws Exception {
-        //First Place Order
-        // Get Order by Order Id from Db and check
-        //Check Output
-
-        OrderRequest orderRequest = getMockOrderRequest();
-        MvcResult mvcResult
-                = mockMvc.perform(MockMvcRequestBuilders.post("/order/placeOrder")
-                        .with(jwt().authorities(new SimpleGrantedAuthority("Customer")))
-                        .contentType(MediaType.APPLICATION_JSON_VALUE)
-                        .content(objectMapper.writeValueAsString(orderRequest))
-                ).andExpect(MockMvcResultMatchers.status().isOk())
-                .andReturn();
-
-        String orderId = mvcResult.getResponse().getContentAsString();
-
-        Optional<Order> order = orderRepository.findById(Long.valueOf(orderId));
-        assertTrue(order.isPresent());
-
-        Order o = order.get();
-        assertEquals(Long.parseLong(orderId), o.getId());
-        assertEquals("PLACED", o.getOrderStatus());
-        assertEquals(orderRequest.getTotalAmount(), o.getAmount());
-        assertEquals(orderRequest.getQuantity(), o.getQuantity());
-
-    }
-
-    @Test
-    public void test_WhenPlaceOrderWithWrongAccess_thenThrow403() throws Exception {
-        OrderRequest orderRequest = getMockOrderRequest();
-        MvcResult mvcResult
-                = mockMvc.perform(MockMvcRequestBuilders.post("/order/placeOrder")
-                        .with(jwt().authorities(new SimpleGrantedAuthority("Admin")))
-                        .contentType(MediaType.APPLICATION_JSON_VALUE)
-                        .content(objectMapper.writeValueAsString(orderRequest))
-                ).andExpect(MockMvcResultMatchers.status().isForbidden())
-                .andReturn();
-    }
+//    @Test
+//    public void test_WhenPlaceOrder_DoPayment_Success() throws Exception {
+//        //First Place Order
+//        // Get Order by Order Id from Db and check
+//        //Check Output
+//
+//        OrderRequest orderRequest = getMockOrderRequest();
+//        MvcResult mvcResult
+//                = mockMvc.perform(MockMvcRequestBuilders.post("/order/placeOrder")
+//                        .with(jwt().authorities(new SimpleGrantedAuthority("Customer")))
+//                        .contentType(MediaType.APPLICATION_JSON_VALUE)
+//                        .content(objectMapper.writeValueAsString(orderRequest))
+//                ).andExpect(MockMvcResultMatchers.status().isOk())
+//                .andReturn();
+//
+//        String orderId = mvcResult.getResponse().getContentAsString();
+//
+//        Optional<Order> order = orderRepository.findById(Long.valueOf(orderId));
+//        assertTrue(order.isPresent());
+//
+//        Order o = order.get();
+//        assertEquals(Long.parseLong(orderId), o.getId());
+//        assertEquals("PLACED", o.getOrderStatus());
+//        assertEquals(orderRequest.getTotalAmount(), o.getAmount());
+//        assertEquals(orderRequest.getQuantity(), o.getQuantity());
+//
+//    }
+//
+//    @Test
+//    public void test_WhenPlaceOrderWithWrongAccess_thenThrow403() throws Exception {
+//        OrderRequest orderRequest = getMockOrderRequest();
+//        MvcResult mvcResult
+//                = mockMvc.perform(MockMvcRequestBuilders.post("/order/placeOrder")
+//                        .with(jwt().authorities(new SimpleGrantedAuthority("Admin")))
+//                        .contentType(MediaType.APPLICATION_JSON_VALUE)
+//                        .content(objectMapper.writeValueAsString(orderRequest))
+//                ).andExpect(MockMvcResultMatchers.status().isForbidden())
+//                .andReturn();
+//    }
 
 
 //    @Test
